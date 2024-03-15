@@ -1,19 +1,21 @@
-# Notas informativa
+# AdminPro - Notas informativa
+
+Correr el programa (Recordar ejecutar) ````npm install````
 
 ## Install
-npm install express
+````npm install express````
 
 ## nodemon
-npm install -g nodemon
+````npm install -g nodemon````
 
 ## Correr app
-npm run start:dev
+````npm run start:dev````
 
 ## Conectar mi BD con mi servidor
-npm i mongoose@5.9.21 --save
+````npm i mongoose@5.9.21 --save````
 
 ## Crear y usar .env
-npm i dotenv@8.2.0
+````npm i dotenv@8.2.0````
 
 ## CORS
-npm i cors@2.8.5
+````npm i cors@2.8.5````
