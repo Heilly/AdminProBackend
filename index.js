@@ -11,23 +11,28 @@ const { dbConnection } = require('./database/config')
 //Crear el servidor
 const app = express();
 
-// Base de datos
-//mean_user
-//6yqKjoCEBJnCtRTz
-dbConnection();
 
 // Configurar CORS
 app.use( cors() );
 
 
+//Lectura y  paseo del Body
+app.use( express.json() );
+
+
+// Base de datos
+//mean_user
+//6yqKjoCEBJnCtRTz
+dbConnection();
+
 
 // Routas
-app.get( '/', (req, res) => {
-    res.json( {
-        ok: true,
-        msg: 'Hola mundo'
-    })
-})
+//todas mis rutas van a empezar con api
+//CRUD USER
+app.use( '/api/usuarios', require('./routes/usuariosRoutes') );
+//Login User
+app.use( '/api/login', require('./routes/authRouter') );
+
 
 
 
