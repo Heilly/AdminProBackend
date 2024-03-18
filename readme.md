@@ -19,3 +19,6 @@ Correr el programa (Recordar ejecutar) ````npm install````
 
 ## CORS
 ````npm i cors@2.8.5````
+
+## Verificar user
+Primero loguerse para obtener el token

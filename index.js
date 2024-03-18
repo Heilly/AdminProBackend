@@ -32,6 +32,14 @@ dbConnection();
 app.use( '/api/usuarios', require('./routes/usuariosRoutes') );
 //Login User
 app.use( '/api/login', require('./routes/authRouter') );
+//Hospitales
+app.use( '/api/hospitales', require('./routes/hospitalesRouter') );
+app.use( '/api/medicos', require('./routes/medicosRouter') );
+app.use( '/api/todo', require('./routes/busquedasRouter') );
+app.use( '/api/upload', require('./routes/uploadsRouter') );
+
+
+
 
 
 
