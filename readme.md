@@ -22,3 +22,6 @@ Correr el programa (Recordar ejecutar) ````npm install````
 
 ## Verificar user
 Primero loguerse para obtener el token
+
+## Login with Google
+https://developers.google.com/identity/gsi/web/guides/verify-google-id-token?hl=es-419#node.js
