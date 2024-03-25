@@ -49,6 +49,12 @@ const login = async( req, res) => {
     }
 }
 
+
+/** En index.html  aparece un boton que hace una peticio a google como solicitud de autenticacion
+ * req: contiene el token que google genero del usuario que quiere loguearse
+ * primero verificamos que el token sea el correcto y obtenemos el payload
+ * si el usuario no existe creamos uno y luego generamos un token propio
+*/
 const googleSignIn = async( req, res = response ) => {
     console.log('req:', req);
 
@@ -112,12 +118,16 @@ const renweToken = async( req, res = response ) => {
     // Generar el TOKEN - JWT
     const token = await generarJWT( uid );
 
+    //Obtener el usuario por UID
+    const usuarioDB = await Usuario.findById( uid );
+
     
 
     res.json({
         ok: true,
         uid,
-        token
+        token,
+        usuarioDB
     });
 }
 

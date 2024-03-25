@@ -20,7 +20,6 @@ router.get( '/', validarJWT, getUser );
 router.post( '/', 
     [
         //Todas las rutas que esten proteginas en el middelware
-        validarJWT,
         check('name', 'El nombre es obligatorio').not().isEmpty(),
         check('password', 'El password es obligatorio').not().isEmpty(),
         check('email', 'El email es obligatorio').isEmail(),
