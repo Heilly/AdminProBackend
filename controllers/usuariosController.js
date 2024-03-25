@@ -10,7 +10,6 @@ const { generarJWT } = require("../helpers/jwt");
 const getUser = async(req, res) => {
     //paginacion
     const desde = Number(req.query.desde) || 0;
-    console.log(desde);
 
 
     //Obtengo todos mis usuarios con todos sus parametros
@@ -23,19 +22,20 @@ const getUser = async(req, res) => {
 
     const total = await Usuario.count();*/
 
-    const [usuarios, total] = await Promise.all([
+    const [ usuarios, total ] = await Promise.all([
         Usuario
-            .find({}, 'name email role google')
+            .find({}, 'nombre email role google img')
             .skip( desde )
             .limit( 5 ),
-        Usuario.count()
+
+        Usuario.countDocuments()
     ]);
 
-    res.json( {
+    res.json({
         ok: true,
         usuarios,
         total
-    })
+    });
 };
 
 const createUser = async( req, res = response ) => {
@@ -52,6 +52,7 @@ const createUser = async( req, res = response ) => {
             });
         }
         const usuario = new Usuario (req.body );
+        usuario.img = '';
 
         //Encriptar constraseña y cuando se guarda el usuario retornar un token de acceso
         const salt = bcrypt.genSaltSync();
