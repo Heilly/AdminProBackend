@@ -13,7 +13,8 @@ const getUser = async(req, res) => {
 
 
     //Obtengo todos mis usuarios con todos sus parametros
-    //const usuarios = await Usuario.find();
+    //const usuarioss = await Usuario.find();
+    //console.log(usuarioss);
     //Obtengo todos mis usuarios con parametros especificos
     /*const usuarios = await Usuario
                             .find({}, 'name email role google')
@@ -24,7 +25,8 @@ const getUser = async(req, res) => {
 
     const [ usuarios, total ] = await Promise.all([
         Usuario
-            .find({}, 'nombre email role google img')
+        //estás especificando explícitamente qué campos quieres devolver en el resultado
+            .find({}, 'name email role google img')
             .skip( desde )
             .limit( 5 ),
 
@@ -52,7 +54,6 @@ const createUser = async( req, res = response ) => {
             });
         }
         const usuario = new Usuario (req.body );
-        usuario.img = '';
 
         //Encriptar constraseña y cuando se guarda el usuario retornar un token de acceso
         const salt = bcrypt.genSaltSync();
@@ -116,8 +117,8 @@ const putUser = async (req, res = response) => {
             }
         }
         if( !usuarioDB.google ){
-        campos.email = email;
-        } else if(usuarioDB.google !== email){
+            campos.email = email;
+        } else if(usuarioDB.email !== email){
             return res.status(400).json({
                 ok: false,
                 msg: 'Usuarios de google no pueden cambiar su correo'
