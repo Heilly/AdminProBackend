@@ -1,12 +1,17 @@
 const { response } = require('express');
 
 const Hospital = require('../models/hospital');
+const Usuario = require('../models/usuario');
 
 
 const getHospitales = async(req, res = response) => {
 
+    //console.log(req);
+
     const hospitales = await Hospital.find()
-                                    .populate('usuario','nombre img');
+                                    .populate('usuario','name img');
+
+    
 
     res.json({
         ok: true,
@@ -18,12 +23,18 @@ const crearHospital = async(req, res = response) => {
 
     const uid = req.uid;
     console.log(uid);
+            
+    // Obtén el usuario completo basado en su ID
+    const usuario = await Usuario.findById(uid);
+
     const hospital = new Hospital({ 
-        usuario: uid,
+        usuario: usuario,
         ...req.body 
     });
 
     try {
+
+        
         
         const hospitalDB = await hospital.save();
         
@@ -49,8 +60,10 @@ const actualizarHospital = async(req, res = response) => {
     const id  = req.params.id;
     const uid = req.uid;
 
+
     try {
-        
+        // Obtén el usuario completo basado en su ID
+        const usuario = await Usuario.findById(uid);
         const hospital = await Hospital.findById( id );
 
         if ( !hospital ) {
@@ -62,7 +75,7 @@ const actualizarHospital = async(req, res = response) => {
 
         const cambiosHospital = {
             ...req.body,
-            usuario: uid
+            usuario: usuario
         }
 
         const hospitalActualizado = await Hospital.findByIdAndUpdate( id, cambiosHospital, { new: true } );
