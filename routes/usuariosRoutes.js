@@ -7,7 +7,7 @@ const {Router} = require('express');
 const { getUser,createUser, putUser, deleteUser } = require('../controllers/usuariosController');
 const { check } = require('express-validator');
 const { validarCampos } = require("../middleware/validar-campos");
-const { validarJWT } = require('../middleware/validar-jwt');
+const { validarJWT, varlidarADMIN_ROLE, varlidarADMIN_ROLE_o_MismoUsuario } = require('../middleware/validar-jwt');
 
 const router = Router();
 
@@ -19,6 +19,7 @@ router.get( '/', validarJWT, getUser );
 //para enviar vario Middleware se ponen entre []
 router.post( '/', 
     [
+        validarJWT,
         //Todas las rutas que esten proteginas en el middelware
         check('name', 'El nombre es obligatorio').not().isEmpty(),
         check('password', 'El password es obligatorio').not().isEmpty(),
@@ -30,6 +31,8 @@ router.post( '/',
 //Actualizar usuario 
 router.put( '/:id', 
     [
+        validarJWT,
+        varlidarADMIN_ROLE_o_MismoUsuario,
         check('name', 'El nombre es obligatorio').not().isEmpty(),
         check('email', 'El email es obligatorio').isEmail(),
         //check('role', 'El role es obligatorio').not().isEmpty(),
@@ -38,7 +41,7 @@ router.put( '/:id',
     putUser  );
 
 //Eliminar usuario 
-router.delete( '/:id', validarJWT,deleteUser  );
+router.delete( '/:id', [ validarJWT, varlidarADMIN_ROLE ], validarJWT,deleteUser  );
 
 
 
