@@ -1,41 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-critters-container>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google-Sign-in</title>
-</head>
-<body>
-    <h1>Google</h1>
+  <meta charset="utf-8">
+  <title>AdminPro</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon.png">
 
-    <div id="buttonDiv"></div>
+  <!-- Bootstrap Core CSS -->
+  <script src="https://kit.fontawesome.com/94f8a16fb5.js" crossorigin="anonymous"></script>
+  <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="./assets/css/style.css" rel="stylesheet">
+  <!-- You can change the theme colors from here -->
+  <link href="./assets/css/colors/default-dark.css" id="theme" rel="stylesheet">
 
-    <script src="https://accounts.google.com/gsi/client" async></script>
-    <script>
-        var url = "http://localhost:3000/api/login/google"
-      function handleCredentialResponse(response) {
-        //console.log("Encoded JWT ID token: " + response.credential);
-        fetch( url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: response.credential })
-        })
-        .then( resp => resp.json() )
-        .then( data => console.log('Nuestro server', data) )
-        .catch( console.log )
-      }
-      window.onload = function () {
-        google.accounts.id.initialize({
-          client_id: '948583715514-rpkim7dc9btffe4hjj3r7ru6730mg5v9.apps.googleusercontent.com',
-          callback: handleCredentialResponse
-        });
-        google.accounts.id.renderButton(
-          document.getElementById("buttonDiv"),
-          { theme: "outline", size: "large" }  // customization attributes
-        );
-        google.accounts.id.prompt(); // also display the One Tap dialog
-      }
-    </script>
+  <!--Login -->
+  <script src="https://accounts.google.com/gsi/client" async></script>
+
+
+<link rel="stylesheet" href="styles-VO36WRM2.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-VO36WRM2.css"></noscript><link rel="modulepreload" href="chunk-K53FYI3L.js"></head>
+<body class="fix-header card-no-border fix-sidebar">
+
+  <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+      <div class="loader">
+          <div class="loader__figure"></div>
+          <p class="loader__label">Admin Pro</p>
+      </div>
+  </div>
+  <app-root></app-root>
+
+
+  <!-- All Jquery -->
+    <!-- ============================================================== -->
+
     
-</body>
+
+    <script src="./assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="./assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="./assets/js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Wave Effects -->
+    <script src="./assets/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="./assets/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="./assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="./assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="./assets/js/custom.min.js"></script>
+<script src="polyfills-RT5I6R6G.js" type="module"></script><script src="main-LBCTSKCE.js" type="module"></script></body>
 </html>
