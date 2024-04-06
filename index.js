@@ -1,6 +1,8 @@
 
 const express = require('express');
 require('dotenv').config();
+const path = require('path');
+
 const cors = require('cors')
 
 
@@ -40,6 +42,11 @@ app.use( '/api/hospitales', require('./routes/hospitalesRouter') );
 app.use( '/api/medicos', require('./routes/medicosRouter') );
 app.use( '/api/todo', require('./routes/busquedasRouter') );
 app.use( '/api/upload', require('./routes/uploadsRouter') );
+
+// Lo último
+app.get('*', (req, res) => {
+    res.sendFile( path.resolve( __dirname, 'public/index.html' ) );
+});
 
 
 
