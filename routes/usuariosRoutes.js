@@ -19,7 +19,7 @@ router.get( '/', validarJWT, getUser );
 //para enviar vario Middleware se ponen entre []
 router.post( '/', 
     [
-        validarJWT,
+        //validarJWT,
         //Todas las rutas que esten proteginas en el middelware
         check('name', 'El nombre es obligatorio').not().isEmpty(),
         check('password', 'El password es obligatorio').not().isEmpty(),
