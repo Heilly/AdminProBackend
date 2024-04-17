@@ -6,21 +6,27 @@ const getMenuFrontEnd = (role = 'USER_ROLE') => {
           titulo: 'Dashboard',
           icono: 'mdi mdi-gauge',
           submenu: [
-            { titulo: 'Main', url: '/' },
-            { titulo: 'Gráficas', url: 'grafica1' },
             { titulo: 'rxjs', url: 'rxjs' },
-            { titulo: 'Promesas', url: 'promesas' },
             { titulo: 'ProgressBar', url: 'progress' },
           ]
         },
     
         {
-          titulo: 'Mantenimientos',
-          icono: 'mdi mdi-folder-lock-open',
+          titulo: 'Hospitales',
+          icono: 'mdi mdi-hospital-building',
           submenu: [
             // { titulo: 'Usuarios', url: 'usuarios' },
             { titulo: 'Hospitales', url: 'hospitales' },
             { titulo: 'Médicos', url: 'medicos' },
+          ]
+        },
+        {
+          titulo: 'Proyectos',
+          icono: 'mdi mdi-widgets',
+          submenu: [
+            { titulo: 'Gifs App', url: 'gifs' },
+            { titulo: 'Countries', url: 'countries' },
+            { titulo: 'Pipe APP', url: 'pipe' },
           ]
         },
       ];
